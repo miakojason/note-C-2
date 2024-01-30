@@ -130,14 +130,24 @@ function to($url)
 {
     header("location:$url");
 }
-if (isset($_GET['do'])) {
-    if (isset(${ucfirst($_GET['do'])})) {
-        $DB = ${ucfirst($_GET['do'])};
+if(!isset($_SESSION['visited'])){
+    if($Total->count(['date'=>date('T-m-d')])>0){
+        $total=$Total->find(['date'=>date('Y-m-d')]);
+        $total['total']++;
+        $Total->save($total);
+    }else{
+        $Total->save(['total'=>1,'date'=>date('Y-m-d')]);
     }
-} else {
-    $DB = $Title;
+    $_SESSION['visited']=1;
 }
-if (!isset($_SESSION['visited'])) {
-    $Total->q("update `total` set `total` = `total`+1 where `id`=1");
-    $_SESSION['visited'] = 1;
-}
+// if (isset($_GET['do'])) {
+//     if (isset(${ucfirst($_GET['do'])})) {
+//         $DB = ${ucfirst($_GET['do'])};
+//     }
+// } else {
+//     $DB = $Title;
+// }
+// if (!isset($_SESSION['visited'])) {
+//     $Total->q("update `total` set `total` = `total`+1 where `id`=1");
+//     $_SESSION['visited'] = 1;
+// }

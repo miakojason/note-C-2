@@ -54,7 +54,7 @@ a:hover
 {
 	width:18.2%;
 	padding:2px;
-	background:url(../icon/02B04.png) repeat-y;
+	background:url(./icon/02B04.png) repeat-y;
 	/*background-size:100% auto;*/
 	min-height:568px;
 	display:inline-block;
@@ -272,7 +272,7 @@ cursor:default;
 {
 	width:25px;
 	height:25px;
-	background:url(../icon/02B03.jpg);
+	background:url(./icon/02B03.jpg);
 	background-size:cover;
 	display:inline-block;
 	background-position:0px 2px;

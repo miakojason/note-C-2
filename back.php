@@ -1,4 +1,4 @@
-﻿<?php include_once "./api/db.php"; ?>
+﻿<?php include_once "./api/db.php";?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -18,13 +18,9 @@
 	</div>
 	<div id="all">
 		<div id="title">
-			<?= date("m 月 d 號 l"); ?> | 
-			今日瀏覽: <?=$Total->find(['date'=>date('Y-m-d')])['total'];?> | 
-			累積瀏覽: <?=$Total->sum('total');?>
-			<a href="./index.php" style="float: right;">回首頁</a>
-		</div>
+			00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36 </div>
 		<div id="title2">
-			<a href="./index.php"><img src="./icon/02B01.jpg" alt="健康處進網-回首頁"></a>
+
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
@@ -44,11 +40,11 @@
 					<div class="">
 						<?php
 						$do = $_GET['do'] ?? 'main';
-						$file = "./front/{$do}.php";
+						$file = "./back/{$do}.php";
 						if (file_exists($file)) {
 							include $file;
 						} else {
-							include "./front/main.php";
+							include "./back/main.php";
 						}
 						?>
 					</div>
