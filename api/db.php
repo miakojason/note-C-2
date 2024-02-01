@@ -43,12 +43,12 @@ class DB
     }
     function find($id)
     {
-        $sql = "select * from `$this->table`";
+        $sql = "select * from `$this->table`  where  ";
         if (is_array($id)) {
             $tmp = $this->a2s($id);
-            $sql .= " where " . join(" && ", $tmp);
+            $sql .=join(" && ", $tmp);
         } else if (is_numeric($id)) {
-            $sql .= " where  `id` = '$id'";
+            $sql .= "`id` = '$id'";
         } else {
             echo "錯誤:參數的資料型態必須是數字或陣列";
         }
