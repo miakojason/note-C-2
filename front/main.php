@@ -3,7 +3,7 @@
     display: flex;
     margin-left: 1px;
 }
-.tags{
+.tag{
     width: 100px;
     padding: 5px 10px;
     border: 1px solid black;
@@ -22,14 +22,14 @@ article section{
     padding: 15px;
 }
 .active{
-    border-bottom:1px solid while;
+    border-bottom:1px solid white;
     background-color: white;
 }
 </style>
 <div class="tags">
     <div id="sec01" class="tag active">健康新知</div>
-    <div id="sec02" class="tag">菸害防制</div>
-    <div id="sec03" class="tag">癌症治病</div>
+    <div id="sec02" class="tag">菸害防治</div>
+    <div id="sec03" class="tag">癌症防治</div>
     <div id="sec04" class="tag">慢性病防治</div>
 </div>
     <section id="section01" style="display: block;">
@@ -55,7 +55,7 @@ article section{
     </pre>
     </section>
     <section id="section02">
-    <h2>菸害防制</h2>
+    <h2>菸害防治</h2>
     <pre>
     菸害防治法規
 第二十三條　　違反第五條或第十條第一項規定者，處新臺幣一萬元以上五萬元以下罰鍰，並得按次連續處罰。
@@ -81,7 +81,7 @@ article section{
     </pre>
     </section>
     <section id="section03">
-    <h2>癌症治病</h2>
+    <h2>癌症防治</h2>
     <pre>
     降低罹癌風險 建構健康生活型態
 癌症防治   三管齊下  Part 1 降低罹癌風險建構健康生活型態 
