@@ -1,30 +1,33 @@
 <style>
-.tags{
-    display: flex;
-    margin-left: 1px;
-}
-.tag{
-    width: 100px;
-    padding: 5px 10px;
-    border: 1px solid black;
-    margin-left: -1px;
-    border-radius: 5px 5px 0 0;
-    text-align: center;
-    background-color: #ccc;
-    cursor: pointer;
-}
-article section{
-    border: 1px solid black;
-    border-radius: 0 5px 5px 5px ;
-    min-height: 480px;
-    margin-top: -1px;
-    display: none;
-    padding: 15px;
-}
-.active{
-    border-bottom:1px solid white;
-    background-color: white;
-}
+    .tags {
+        display: flex;
+        margin-left: 1px;
+    }
+
+    .tag {
+        width: 100px;
+        padding: 5px 10px;
+        border: 1px solid black;
+        margin-left: -1px;
+        border-radius: 5px 5px 0 0;
+        text-align: center;
+        background-color: #ccc;
+        cursor: pointer;
+    }
+
+    article section {
+        border: 1px solid black;
+        border-radius: 0 5px 5px 5px;
+        min-height: 480px;
+        margin-top: -1px;
+        display: none;
+        padding: 15px;
+    }
+
+    .active {
+        border-bottom: 1px solid white;
+        background-color: white;
+    }
 </style>
 <div class="tags">
     <div id="sec01" class="tag active">健康新知</div>
@@ -32,7 +35,8 @@ article section{
     <div id="sec03" class="tag">癌症防治</div>
     <div id="sec04" class="tag">慢性病防治</div>
 </div>
-    <section id="section01" style="display: block;">
+<article>
+<section id="section01" style="display: block;">
     <h2>健康新知</h2>
     <pre>
     缺乏運動已成為影響全球死亡率的第四大危險因子-國人無規律運動之比率高達72.2%
@@ -53,8 +57,8 @@ article section{
 7. 減少看電視、打電玩等靜態生活的時間。
     民眾對運動如有疑問，可參考國民健康局肥胖防治網-「快樂動」(http://obesity.bhp.gov.tw)，亦可撥打免費市話健康體重管理電話諮詢服務，諮詢專線「0800-367-100（0800-瘦落去-要動動）」，也可利用國民健康局局網首頁或肥胖防治網問題諮詢專區的網路電話撥入功能，向客服人員諮詢關於運動、健康飲食及健康體重管理等相關疑問。
     </pre>
-    </section>
-    <section id="section02">
+</section>
+<section id="section02">
     <h2>菸害防治</h2>
     <pre>
     菸害防治法規
@@ -79,8 +83,8 @@ article section{
 第三十三條　　本法所定罰則，除第二十五條規定由中央主管機關處罰外，由直轄市、縣（市）主管機關處罰之。
 
     </pre>
-    </section>
-    <section id="section03">
+</section>
+<section id="section03">
     <h2>癌症防治</h2>
     <pre>
     降低罹癌風險 建構健康生活型態
@@ -101,8 +105,8 @@ article section{
 上稿日期：2010/1/20
 
     </pre>
-    </section>
-    <section id="section04">
+</section>
+<section id="section04">
     <h2>慢性病防治</h2>
     <pre>
     長期憋尿 泌尿系統問題多 
@@ -128,6 +132,14 @@ article section{
 4、多注意及控制易引發膀胱炎的疾病：如糖尿病、尿路結石、攝護腺肥大等。
 如果民眾發現自己解尿不舒服時，一定要在第一時間就診，讓醫師採用檢體對症下藥，只要沒有其他的特殊問題併存，同時能接受完整療程的抗生素治療，通常一星期左右即可痊癒。不過服藥的時間及用量絕對要遵照醫師囑咐，如果自行隨意停藥或不按時服用，很可能會造成殘存的細菌出現抗藥性，非但原本的症狀無法痊癒，還可能帶來慢性泌尿道發炎、尿路結石、腎臟功能受損等併發症，千萬要特別注意。
     </pre>
-    </section>
+</section>
 </article>
-<article>
+    <script>
+        $(".tag").on('click', function() {
+            $(".tag").removeClass("active")
+            $(this).addClass("active")
+            let id = $(this).attr('id').replace("sec", 'section');
+            $("section").hide();
+            $("#" + id).show();
+        })
+    </script>

@@ -80,3 +80,23 @@
 </pre>
     </section>
 </article>
+<script>
+    //建立頁籤的點擊事件
+    $(".tag").on('click', function() {
+
+        //先移除全部頁籤的active class
+        $(".tag").removeClass('active')
+
+        //在點擊當下的頁籤加上active
+        $(this).addClass('active')
+
+        //透過字串取代的方式取得對應的section id
+        let id = $(this).attr('id').replace("sec", 'section');
+
+        //先隱藏全部的文章
+        $("section").hide();
+
+        //再顯示對應的文章
+        $("#" + id).show();
+    })
+</script>
