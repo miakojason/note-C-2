@@ -51,7 +51,7 @@
         <tr>
             <td>
                 <input type="button" value="註冊" onclick="reg()">
-                <input type="reset" value="清除" >
+                <input type="reset" value="清除" onclick="clean()" >
             </td>
             <td></td>
         </tr>
