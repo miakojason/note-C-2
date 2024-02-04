@@ -20,7 +20,7 @@ function good(id,type,user)
 	})
 }
 function clean() {
-	$("input[type='text'],input[type=''password],input[type='number'],input[type='radio']").val("");
+	$("input[type='text'],input[type='password'],input[type='number'],input[type='radio']").val("");
 }
 function reg(){
 	let user={
@@ -31,11 +31,11 @@ function reg(){
 	}
 	if(user.acc !='' && user.pw !='' && user.pw2 !='' && user.email !=''){
 		if(user.pw==user.pw2){
-			$.post("./api/chacc.php",{acc:user.acc},(res)=>{
+			$.post("./api/check_acc.php",{acc:user.acc},(res)=>{
 				if(parseInt(res)==1){
 					alert("帳號重覆")
 				}else{
-					$.post("./api/reg.php",user,(reg)=>{
+					$.post("./api/reg.php",user,(res)=>{
 						alert('註冊完成')
 					})
 				}
