@@ -11,6 +11,10 @@ class DB
         $this->table = $table;
         $this->pdo = new PDO($this->dsn, 'root', '');
     }
+    function q($sql)
+    {
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
     private function a2s($array)
     {
         foreach ($array as $col => $value) {
@@ -30,12 +34,26 @@ class DB
                 echo "空的";
             }
         } else {
-            $sql = "insert into `$this->table` ";
+            $sql = "insert into `$this->table`";
             $cols = "(`" . join("`,`", array_keys($array)) . "`)";
             $vals = "('" . join("','", $array) . "')";
             $sql .= $cols . "values" . $vals;
         }
         return $this->pdo->exec($sql);
+    }
+    function find($id)
+    {
+        $sql = "select * from `$this->table`  where  ";
+        if (is_array($id)) {
+            $tmp = $this->a2s($id);
+            $sql .=join(" && ", $tmp);
+        } else if (is_numeric($id)) {
+            $sql .= "`id` = '$id'";
+        } else {
+            echo "錯誤:參數的資料型態必須是數字或陣列";
+        }
+        $row = $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        return $row;
     }
     function del($id)
     {
@@ -43,26 +61,12 @@ class DB
         if (is_array($id)) {
             $tmp = $this->a2s($id);
             $sql .= join(" && ", $tmp);
-        } elseif (is_numeric($id)) {
+        } else if (is_numeric($id)) {
             $sql .= "`id`='$id'";
         } else {
-            echo "x type";
+            echo "錯誤:參數資料型態必須是數字或陣列";
         }
         return $this->pdo->exec($sql);
-    }
-    function find($id)
-    {
-        $sql = "select * from `$this->table` where ";
-        if (is_array($id)) {
-            $tmp = $this->a2s($id);
-            $sql .= join(" && ", $tmp);
-        } elseif (is_numeric($id)) {
-            $sql .= "`id`='$id'";
-        } else {
-            echo "x type";
-        }
-        $row = $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
-        return $row;
     }
     private function sql_all($sql, $array, $other)
     {
@@ -73,32 +77,28 @@ class DB
                     $sql .= " where " . join(" && ", $tmp);
                 }
             } else {
-                $sql .= " $array ";
+                $sql .= " $array";
             }
             return $sql .= $other;
         } else {
-            echo "x table";
+            echo "錯誤:沒有指定的資料表名稱";
         }
-    }
-    function q($sql)
-    {
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
     function all($where = '', $other = '')
     {
-        $sql = "select * from `$this->table` ";
+        $sql = "select * from `$this->table`";
         $sql = $this->sql_all($sql, $where, $other);
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
     function count($where = '', $other = '')
     {
-        $sql = "select count(*) from `$this->table` ";
+        $sql = "select count(*) from `$this->table`";
         $sql = $this->sql_all($sql, $where, $other);
         return $this->pdo->query($sql)->fetchColumn();
     }
     private function math($math, $col, $array = '', $other = '')
     {
-        $sql = "select $math(`$col`) from `$this->table` ";
+        $sql = "select $math(`$col`) from `$this->table`";
         $sql = $this->sql_all($sql, $array, $other);
         return $this->pdo->query($sql)->fetchColumn();
     }
@@ -115,6 +115,11 @@ class DB
         return $this->math('min', $col, $where, $other);
     }
 }
+$Total = new DB('total');
+$News = new DB('news');
+$User=new DB('user');
+$Que=new DB('que');
+$Log=new DB('log');
 function dd($array)
 {
     echo "<pre>";
@@ -125,11 +130,6 @@ function to($url)
 {
     header("location:$url");
 }
-$Total = new DB('total');
-$News = new DB('news');
-$User=new DB('user');
-$Que=new DB('que');
-$Log=new DB('log');
 if(!isset($_SESSION['visited'])){
     if($Total->count(['date'=>date('T-m-d')])>0){
         $total=$Total->find(['date'=>date('Y-m-d')]);
@@ -140,3 +140,14 @@ if(!isset($_SESSION['visited'])){
     }
     $_SESSION['visited']=1;
 }
+// if (isset($_GET['do'])) {
+//     if (isset(${ucfirst($_GET['do'])})) {
+//         $DB = ${ucfirst($_GET['do'])};
+//     }
+// } else {
+//     $DB = $Title;
+// }
+// if (!isset($_SESSION['visited'])) {
+//     $Total->q("update `total` set `total` = `total`+1 where `id`=1");
+//     $_SESSION['visited'] = 1;
+// }
