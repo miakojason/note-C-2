@@ -39,7 +39,7 @@
 				<div style="display: flex;">
 					<marquee style="width: 80%;">請民眾踴躍投稿電子報，讓電子報成為大家相
 						互交流、分享的園地！詳見最新文章</marquee>
-					<span style="width:20%; display:inline-block;">
+					<span style="width:16%; display:inline-block;">
 						<?php
 						if (!isset($_SESSION['user'])) {
 						?>
