@@ -5,5 +5,5 @@ if($res>0){
 }else{
     echo 0;
 }
-echo $User->count(['acc'=>['acc']]);
+echo $User->count(['acc'=>$_POST['acc']]);
 ?>
