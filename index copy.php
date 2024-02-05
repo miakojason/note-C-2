@@ -10,7 +10,6 @@
 	<link href="./css/css.css" rel="stylesheet" type="text/css">
 	<script src="./js/jquery-1.9.1.min.js"></script>
 	<script src="./js/js.js"></script>
-
 	<style>
 		.pop {
 			background: rgba(51, 51, 51, 0.8);
@@ -30,13 +29,13 @@
 
 	<div id="all">
 		<div id="title">
-			<?= date("m 月 d 號 l"); ?> |
-			今日瀏覽: <?= $Total->find(['date' => date('Y-m-d')])['total']; ?> |
+			<?= date("m月d日 l"); ?> |
+			今日瀏覽: <?= $Total->find(['date' => date("Y-m-d")])['total']; ?> |
 			累積瀏覽: <?= $Total->sum('total'); ?>
-			<a href="./index.php" style="float:right">回首頁</a>
+			<a href="index.php" style='float:right'>回首頁</a>
 		</div>
 		<div id="title2" title='健康促進網-回首頁'>
-			<a href="./index.php"><img src="./icon/02B01.jpg" alt=""></a>
+			<a href='index.php'><img src="./icon/02B01.jpg" alt=""></a>
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
@@ -48,8 +47,9 @@
 			</div>
 			<div class="hal" id="main">
 				<div>
-					<marquee style="width: 80%;">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
-					<span style="width:16%; display:inline-block;">
+					<marquee style="width:80%; display:inline-block;">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
+
+					<span style="width:20%; display:inline-block;">
 						<?php
 						if (!isset($_SESSION['user'])) {
 						?>
@@ -62,7 +62,7 @@
 							<?php
 							if ($_SESSION['user'] == 'admin') {
 							?>
-								<button onclick="location.href='./back.php'">管理</button>
+								<button onclick="location.href='back.php'">管理</button>
 						<?php
 							}
 						}
@@ -77,6 +77,7 @@
 						} else {
 							include "./front/main.php";
 						}
+
 						?>
 					</div>
 				</div>
