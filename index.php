@@ -11,6 +11,18 @@
 	<script src="./js/jquery-1.9.1.min.js"></script>
 	<script src="./js/js.js"></script>
 </head>
+<style>
+	.pop {
+		background: rgba(51, 51, 51, 0.8);
+		color: #FFF;
+		min-height: 100px;
+		width: 300px;
+		position: fixed;
+		display: none;
+		z-index: 9999;
+		overflow: auto;
+	}
+</style>
 
 <body>
 	<div id="alerr" style="background:rgba(51,51,51,0.8); color:#FFF; min-height:100px; width:300px; position:fixed; display:none; z-index:9999; overflow:auto;">
@@ -43,18 +55,18 @@
 						<?php
 						if (!isset($_SESSION['user'])) {
 						?>
-						<a href="?do=login">會員登入</a>
+							<a href="?do=login">會員登入</a>
 						<?php
-						}else{
+						} else {
 						?>
-						歡迎,<?=$_SESSION['user'];?>
-						<button onclick="location.hred='./api/logout.php'">登出</button>
-						<?php
-						if($_SESSION['user']=='admin'){
+							歡迎,<?= $_SESSION['user']; ?>
+							<button onclick="location.hred='./api/logout.php'">登出</button>
+							<?php
+							if ($_SESSION['user'] == 'admin') {
 
-					
-						?>
-						<button onclick="location.href='./back.php'">管理</button>
+
+							?>
+								<button onclick="location.href='./back.php'">管理</button>
 						<?php
 							}
 						}
