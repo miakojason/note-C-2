@@ -7,12 +7,12 @@
             <th></th>
         </tr>
         <?php
-        $total = $News->count(['sh'=>1]);
+        $total = $News->count(['sh' => 1]);
         $div = 5;
         $pages = ceil($total / $div);
         $now = $_GET['p'] ?? 1;
         $start = ($now - 1) * $div;
-        $rows = $News->all(['sh'=>1]," limit $start,$div");
+        $rows = $News->all(['sh' => 1], " limit $start,$div");
         foreach ($rows as $row) {
         ?>
             <tr>
@@ -31,10 +31,10 @@
                 </td>
                 <td>
                     <?php
-                    if(isset($_SESSION['user'])){
-                        if($Log->count(['news'=>$row['id'],'acc'=>$_SESSION['user']]>0)){
-                            echo"<a href='Javascript:good({$row['id']})'>收回讚</a>";  
-                        }else{
+                    if (isset($_SESSION['user'])) {
+                        if ($Log->count(['news' => $row['id'], 'acc' => $_SESSION['user']]) > 0) {
+                            echo "<a href='Javascript:good({$row['id']})'>收回讚</a>";
+                        } else {
                             echo "<a href='Javascript:good({$row['id']})'>讚</a>";
                         }
                     }
@@ -67,4 +67,12 @@
         let id = $(e.target).data('id');
         $(`#s${id},#a${id}`).toggle();
     })
+
+    function good(news) {
+        $.post("./api/good.php", {
+            news
+        }, () => {
+            location.reload();
+        })
+    }
 </script>
